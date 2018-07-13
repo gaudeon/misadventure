@@ -1,16 +1,28 @@
+import gameConfig from '../config/game.json';
+
+import map from '../stage/map';
+import player from '../actors/player';
+
 export default class PlayGameScene extends Phaser.Scene {
     constructor (config, key = 'PlayGame') {
         super({ key: key });
     }
 
-    preload () {
-        // load all the resources required for this scene before using them
+    init () {
+        this.map = new map(this);
     }
 
-    init () {
+    preload () {
+        this.load.atlas(gameConfig.spriteAtlas.key, gameConfig.spriteAtlas.imageFile, gameConfig.spriteAtlas.jsonFile);
+
+        this.map.preload();
     }
 
     create () {
+        this.map.create();
+
+        this.player = new player(this, 100, 100);
+        this.add.existing(this.player);
     }
 
     update () {

@@ -2,5 +2,30 @@
     "gameWidth": 1280,
     "gameHeight": 768,
     "tileWidth": 32,
-    "tileHeight": 32
+    "tileHeight": 32,
+    "map": {
+        "key": "map",
+        "file": "map.json",
+        "tilesets": [
+            {
+                "key": "map_tileset",
+                "file": "map_tileset.png"
+            }
+        ],
+        "tileLayers": [
+            {
+                "name": "floor",
+                "tileset": "map_tileset"
+            },
+            {
+                "name": "walls",
+                "tileset": "map_tileset"
+            }
+        ]
+    },
+    "spriteAtlas": {
+        "key": "sprite_atlas",
+        "imageFile": "sprite_atlas.png",
+        "jsonFile": "sprite_atlas.json"
+    }
 }
