@@ -21,6 +21,9 @@ export default (superclass) => class extends superclass {
 
         // I don't know about my carry target anymore
         this.carryTarget = null;
+
+        // I don't want to be moving when I drop
+        this.setVelocity(0, 0);
     }
 
     isCarried () {
