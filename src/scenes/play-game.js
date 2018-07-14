@@ -105,10 +105,16 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     createGates () {
-        this.goldGate = new Gate(this, 320, 270);
+        this.gates = {};
+        this.gates[ 6] = new Gate(this, 320, 270);
+        this.gates[13] = new Gate(this, 320, 270);
+        this.gates[23] = new Gate(this, 320, 270);
 
-        this.add.existing(this.goldGate);
-        this.physics.add.existing(this.goldGate);
+        let hasGate = this.gates[this.map.room];
+        if (hasGate) {
+            this.add.existing(hasGate);
+            this.physics.add.existing(hasGate);
+        }
     }
 
     registerPlayerCollisions () {
