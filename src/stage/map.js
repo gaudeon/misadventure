@@ -16,7 +16,7 @@ export default class Map {
     }
 
     create () {
-        this.tilemap = this.scene.make.tilemap({ key: gameConfig.map.key });
+        this.tilemap = this.scene.make.tilemap({ key: this.room });
 
         this.tilesets = {};
         gameConfig.map.tilesets.forEach(tileset => {
