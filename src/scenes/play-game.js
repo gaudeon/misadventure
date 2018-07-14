@@ -1,6 +1,7 @@
 import gameConfig from '../config/game.json';
 
 import Map from '../stage/map';
+import Gate from '../stage/gate';
 import Player from '../actors/player';
 import GoldKey from '../props/keys/gold-key';
 import WhiteKey from '../props/keys/white-key';
@@ -31,7 +32,9 @@ export default class PlayGameScene extends Phaser.Scene {
 
         this.createSword();
 
-        this.registerPlayerCollisions(); 
+        this.createGates();
+
+        this.registerPlayerCollisions();
 
         // this.onEdge(this.bat);
 
@@ -73,7 +76,7 @@ export default class PlayGameScene extends Phaser.Scene {
             this.edge[d].width = w;
         }
 
- 
+
     }
 
     createPlayer () {
@@ -97,6 +100,13 @@ export default class PlayGameScene extends Phaser.Scene {
         this.sword = new Sword(this, 150, 150);
         this.add.existing(this.sword);
         this.physics.add.existing(this.sword);
+    }
+
+    createGates () {
+        this.goldGate = new Gate(this, 320, 260);
+
+        this.add.existing(this.goldGate);
+        this.physics.add.existing(this.goldGate);
     }
 
     registerPlayerCollisions () {
