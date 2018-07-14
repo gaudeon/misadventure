@@ -3,6 +3,8 @@ import gameConfig from '../config/game.json';
 import map from '../stage/map';
 import player from '../actors/player';
 import GoldKey from '../props/keys/gold-key';
+import WhiteKey from '../props/keys/white-key';
+import BlackKey from '../props/keys/black-key';
 
 export default class PlayGameScene extends Phaser.Scene {
     constructor (config, key = 'PlayGame') {
@@ -22,19 +24,11 @@ export default class PlayGameScene extends Phaser.Scene {
     create () {
         this.map.create();
 
-        this.player = new player(this, 100, 100);
-        this.add.existing(this.player); // makes player.preUpdate get called
+        this.createPlayer();
 
-        this.goldKey = new GoldKey(this, 300,300);
-        this.add.existing(this.goldKey);
+        this.createKeys();
 
-        this.goldKey.holdMe(this.player);
-
-        console.log('carried by ', this.goldKey.carryTarget);
-
-        this.physics.add.existing(this.player, false);
-        this.player.setCollideWorldBounds(true);
-        this.onEdge(this.player);
+        this.registerPlayerCollisions(); 
 
         // this.onEdge(this.bat);
 
@@ -76,5 +70,29 @@ export default class PlayGameScene extends Phaser.Scene {
             this.edge[d].width = w;
         }
 
+ 
+    }
+
+    createPlayer () {
+        this.player = new player(this, 100, 100);
+        this.add.existing(this.player); // makes player.preUpdate get called
+        this.physics.add.existing(this.player, false);
+        this.player.setCollideWorldBounds(true);
+        this.onEdge(this.player);
+    }
+
+    createKeys () {
+        this.goldKey = new GoldKey(this, 100, 200);
+        this.whiteKey = new WhiteKey(this, 0, 0);
+        this.blackKey = new BlackKey(this, 0, 0);
+
+        this.add.existing(this.goldKey);
+        this.physics.add.existing(this.goldKey);
+    }
+
+    registerPlayerCollisions () {
+        this.physics.add.collider(this.player, this.goldKey, () => {
+            if (!this.goldKey.isCarried()) this.goldKey.holdMe(this.player);
+        });
     }
 };

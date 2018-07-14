@@ -16,8 +16,7 @@ export default class Map {
     }
 
     create () {
-        console.log(gameConfig);
-        this.tilemap = this.scene.make.tilemap({ key: this.room });
+        this.tilemap = this.scene.make.tilemap({ key: gameConfig.map.key });
 
         this.tilesets = {};
         gameConfig.map.tilesets.forEach(tileset => {
@@ -35,7 +34,5 @@ export default class Map {
         // resize world to match the tilemap
         this.scene.physics.world.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
         this.scene.cameras.main.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
-
-        console.log(this);
     }
 }
