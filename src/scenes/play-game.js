@@ -22,9 +22,15 @@ export default class PlayGameScene extends Phaser.Scene {
         this.map.create();
 
         this.player = new player(this, 100, 100);
-        this.add.existing(this.player);
+
+        this.add.existing(this.player); // makes player.preUpdate get called
+        this.physics.add.existing(this.player, false);
+
+        this.cursor = this.input.keyboard.createCursorKeys();
     }
 
     update () {
+
+
     }
 };
