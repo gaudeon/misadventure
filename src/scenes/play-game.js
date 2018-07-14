@@ -3,6 +3,7 @@ import gameConfig from '../config/game.json';
 import Map from '../stage/map';
 import Gate from '../stage/gate';
 import Player from '../actors/player';
+import Key from '../props/key';
 import GoldKey from '../props/keys/gold-key';
 import WhiteKey from '../props/keys/white-key';
 import BlackKey from '../props/keys/black-key';
@@ -121,6 +122,15 @@ export default class PlayGameScene extends Phaser.Scene {
         [this.goldKey, this.whiteKey, this.blackKey, this.sword].forEach((item) => {
             this.physics.add.collider(this.player, item, () => {
                 if (!item.isCarried()) item.holdMe(this.player);
+            });
+        });
+
+        Object.keys(this.gates).forEach((gateId) => {
+            let gate = this.gates[gateId];
+            this.physics.add.collider(this.player, gate, () => {
+                if (this.player.heldObject() instanceof Key) {
+                    gate.openGate(this.map.room, this.player.heldObject());
+                }
             });
         });
 
