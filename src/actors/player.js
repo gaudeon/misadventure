@@ -1,13 +1,15 @@
 import gameConfig from '../config/game.json';
 import spriteConfig from '../config/sprites.json';
 
-export default class Player extends Phaser.Physics.Arcade.Sprite {
+import HoldObject from '../mixins/inventory/hold-object';
+
+export default class Player extends HoldObject(Phaser.Physics.Arcade.Sprite) {
     constructor (scene, x, y) {
         super(scene, x, y, gameConfig.spriteAtlas.key, spriteConfig.player.frame);
     }
 
     // will only be invoked if added to gameobject (not just physics object)
-    preUpdate () {
+    preUpdate (time, delta) {
 
         var cursor = this.scene.cursor;
 
@@ -22,7 +24,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                : cursor.down.isDown ? v
                : 0;
         this.setVelocityY(vy);
- 
+
+        if (super.preUpdate) super.preUpdate(time, delta);
     }
 
     onEdge (dir) {
