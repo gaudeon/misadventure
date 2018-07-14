@@ -3,7 +3,7 @@ import gameConfig from '../config/game.json';
 export default class Map {
     constructor (scene, room) {
         this.scene = scene;
-        this.room = "room" + room;
+        this.room = room;
     }
 
     preload () {
@@ -11,12 +11,12 @@ export default class Map {
             this.scene.load.image(tileset.key, tileset.file);
         });
 
-        let roomfile = "../../assets/json/" + this.room + ".json";
-        this.scene.load.tilemapTiledJSON(this.room, roomfile);
+        let roomfile = "../../assets/json/room" + this.room + ".json";
+        this.scene.load.tilemapTiledJSON("room" + this.room, roomfile);
     }
 
     create () {
-        this.tilemap = this.scene.make.tilemap({ key: this.room });
+        this.tilemap = this.scene.make.tilemap({ key: "room" + this.room });
 
         this.tilesets = {};
         gameConfig.map.tilesets.forEach(tileset => {
