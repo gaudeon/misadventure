@@ -24,9 +24,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16}
 },
-"white_key":
+"sword":
 {
 	"frame": {"x":80,"y":0,"w":32,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":16},
+	"sourceSize": {"w":32,"h":16}
+},
+"white_key":
+{
+	"frame": {"x":112,"y":0,"w":32,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":16},
@@ -37,8 +45,8 @@
 	"version": "1.0",
 	"image": "sprite_atlas.png",
 	"format": "RGBA8888",
-	"size": {"w":112,"h":16},
+	"size": {"w":144,"h":16},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:b7318cc9270f79c05223db82ffd757c3:5fe8a2bd73ecf0e3ce9a268ec230b783:6faed1d119539f9288c5144068f00f24$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7abaecd4f9f21f235503e1fa3b6a1c89:92f2ea5f548246c6104a65e547ae1f0c:6faed1d119539f9288c5144068f00f24$"
 }
 }
