@@ -8,7 +8,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // will only be invoked if added to gameobject (not just physics object)
     preUpdate () {
-        console.log("Got player update");
 
         var cursor = this.scene.cursor;
 
@@ -23,6 +22,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                : cursor.down.isDown ? v
                : 0;
         this.setVelocityY(vy);
+ 
+    }
 
+    onEdge (dir) {
+        if (dir === 'top')
+            this.setY(this.scene.cameras.main.height - this.body.height/2 - 1);
+        else if (dir === 'bottom')
+            this.setY(1 + this.body.height/2);
+        else if (dir === 'right')
+            this.setX(1 + this.body.width/2);
+        else if (dir === 'left')
+            this.setX(this.scene.cameras.main.width - this.body.width/2 - 1);
+
+        // call exit room after - to allow for the exitRoom to move to some other location
+        this.exitRoom(dir);
+    }
+
+    exitRoom (dir) {
+        console.log("Need to exit room at "+dir);
     }
 }
