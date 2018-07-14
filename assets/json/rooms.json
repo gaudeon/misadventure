@@ -1,0 +1,21 @@
+{
+    "12": {
+        "desc": "Behind Yellow Castle",
+        "path": {
+            "S": 13
+        }
+    },
+    "13": {
+        "desc": "Yellow Castle - Start Room",
+        "path": {
+            "N": 12,
+            "S": 15
+        }
+    },
+    "15": {
+        "desc": "Below Yellow Castle",
+        "path": {
+            "N": 13
+        }
+    }
+}
