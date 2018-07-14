@@ -15,6 +15,10 @@ export default class PlayGameScene extends Phaser.Scene {
 
     init () {
         this.map = new Map(this, gameConfig.map.startingRoom);
+
+        this.cursor = this.input.keyboard.createCursorKeys();
+
+        this.dropItem = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     preload () {
@@ -37,8 +41,6 @@ export default class PlayGameScene extends Phaser.Scene {
         this.registerPlayerCollisions();
 
         // this.onEdge(this.bat);
-
-        this.cursor = this.input.keyboard.createCursorKeys();
     }
 
     update () {

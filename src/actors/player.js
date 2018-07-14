@@ -6,24 +6,33 @@ import HoldObject from '../mixins/inventory/hold-object';
 export default class Player extends HoldObject(Phaser.Physics.Arcade.Sprite) {
     constructor (scene, x, y) {
         super(scene, x, y, gameConfig.spriteAtlas.key, spriteConfig.player.frame);
+
+        this.controls = {
+            cursor: scene.cursor,
+            dropItem: scene.dropItem
+        };
+
+        this.myVelocity = gameConfig.playerVelocity; 
     }
 
     // will only be invoked if added to gameobject (not just physics object)
     preUpdate (time, delta) {
 
-        var cursor = this.scene.cursor;
+        let { cursor, dropItem } = this.controls;
 
-        var v  = gameConfig.playerVelocity;
+        let v  = this.myVelocity;
 
-        var vx = cursor.left.isDown  ? -v
+        let vx = cursor.left.isDown  ? -v
                : cursor.right.isDown ? v
                : 0;
         this.setVelocityX(vx);
 
-        var vy = cursor.up.isDown  ? -v
+        let vy = cursor.up.isDown  ? -v
                : cursor.down.isDown ? v
                : 0;
         this.setVelocityY(vy);
+
+        if (dropItem.isDown && this.heldObject()) this.dropObject();
 
         if (super.preUpdate) super.preUpdate(time, delta);
     }
