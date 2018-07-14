@@ -5,8 +5,7 @@
     "tileHeight": 16,
     "playerVelocity": 200,
     "map": {
-        "key": "map",
-        "file": "map.json",
+        "startingRoom": 13,
         "tilesets": [
             {
                 "key": "map_tileset",

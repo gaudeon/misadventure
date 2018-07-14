@@ -10,7 +10,7 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     init () {
-        this.map = new map(this);
+        this.map = new map(this, gameConfig.map.startingRoom);
     }
 
     preload () {
