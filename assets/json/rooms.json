@@ -1,19 +1,19 @@
 {
     "12": {
-        "desc": "Behind Yellow Castle",
+        "desc": "Gold Castle Foyer",
         "path": {
             "S": 13
         }
     },
     "13": {
-        "desc": "Yellow Castle - Start Room",
+        "desc": "Gold Castle Entrance",
         "path": {
             "N": 12,
             "S": 15
         }
     },
     "15": {
-        "desc": "Below Yellow Castle",
+        "desc": "Gold Castle Grounds Center",
         "path": {
             "N": 13
         }
