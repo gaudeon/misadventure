@@ -1,6 +1,7 @@
 import 'phaser';
 import 'lodash';
 import 'webfontloader';
+
 import gameConfig from './config/game.json';
 
 require('./index.html'); // so we get it in the dist

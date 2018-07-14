@@ -28,6 +28,10 @@ export default class PlayGameScene extends Phaser.Scene {
         this.goldKey = new GoldKey(this, 300,300);
         this.add.existing(this.goldKey);
 
+        this.goldKey.holdMe(this.player);
+
+        console.log('carried by ', this.goldKey.carryTarget);
+
         this.physics.add.existing(this.player, false);
         this.player.setCollideWorldBounds(true);
         this.onEdge(this.player);
