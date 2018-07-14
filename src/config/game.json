@@ -28,5 +28,107 @@
         "key": "sprite_atlas",
         "imageFile": "sprite_atlas.png",
         "jsonFile": "sprite_atlas.json"
+    },
+    "rooms": {
+        1: {
+            "description": "north orange maze top left",
+            "exits": {
+                "north": 3,
+                "east": 2,
+                "south": 3,
+                "west": 4
+            },
+            "fog": false
+        },
+        2: {
+            "description": "north orange maze top right",
+            "exits": {
+                "north": 4,
+                "east": 3,
+                "south": 4,
+                "west": 1
+            },
+            "fog": false
+        },
+        3: {
+            "description": "north orange maze bottom left",
+            "exits": {
+                "north": 1,
+                "east": 4,
+                "south": 1,
+                "west": 2
+            },
+            "fog": false
+        },
+        4: {
+            "description": "north orange maze bottom right",
+            "exits": {
+                "north": 2,
+                "east": 1,
+                "south": 5,
+                "west": 3
+            },
+            "fog": false
+        },
+        5: {
+            "description": "black castle foyer",
+            "exits": {
+                "north": 4,
+                "east": 5,
+                "south": 6,
+                "west": 5
+            },
+            "fog": false
+        },
+        6: {
+        },
+        7: {
+        },
+        8: {
+        },
+        9: {
+        },
+        10: {
+        },
+        11: {
+        },
+        12: {
+        },
+        13: {
+        },
+        14: {
+        },
+        15: {
+        },
+        16: {
+        },
+        17: {
+        },
+        18: {
+        },
+        19: {
+        },
+        20: {
+        },
+        21: {
+        },
+        22: {
+        },
+        23: {
+        },
+        24: {
+        },
+        25: {
+        },
+        26: {
+        },
+        27: {
+        },
+        28: {
+        },
+        29: {
+        },
+        30: {
+        }
     }
 }
