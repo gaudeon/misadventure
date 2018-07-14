@@ -30,7 +30,7 @@
         "jsonFile": "sprite_atlas.json"
     },
     "rooms": {
-        1: {
+        "1": {
             "description": "north orange maze top left",
             "exits": {
                 "north": 3,
@@ -40,7 +40,7 @@
             },
             "fog": false
         },
-        2: {
+        "2": {
             "description": "north orange maze top right",
             "exits": {
                 "north": 4,
@@ -50,7 +50,7 @@
             },
             "fog": false
         },
-        3: {
+        "3": {
             "description": "north orange maze bottom left",
             "exits": {
                 "north": 1,
@@ -60,7 +60,7 @@
             },
             "fog": false
         },
-        4: {
+        "4": {
             "description": "north orange maze bottom right",
             "exits": {
                 "north": 2,
@@ -70,7 +70,7 @@
             },
             "fog": false
         },
-        5: {
+        "5": {
             "description": "black castle foyer",
             "exits": {
                 "north": 4,
@@ -80,55 +80,79 @@
             },
             "fog": false
         },
-        6: {
+        "6": {
+            "description": "black castle entrance",
+            "exits": {
+                "north": 5,
+                "east": 6,
+                "south": 7,
+                "west": 6
+            },
+            "fog": false
         },
-        7: {
+        "7": {
+            "description": "blue maze top",
+            "exits": {
+                "north": 6,
+                "east": 10,
+                "south": 8,
+                "west": 11
+            },
+            "fog": false
         },
-        8: {
+        "8": {
+            "description": "blue maze middle center",
+            "exits": {
+                "north": 7,
+                "east": 11,
+                "south": 8,
+                "west": 11
+            },
+            "fog": false
         },
-        9: {
+        "9": {
         },
-        10: {
+        "10": {
         },
-        11: {
+        "11": {
         },
-        12: {
+        "12": {
         },
-        13: {
+        "13": {
         },
-        14: {
+        "14": {
         },
-        15: {
+        "15": {
         },
-        16: {
+        "16": {
         },
-        17: {
+        "17": {
         },
-        18: {
+        "18": {
         },
-        19: {
+        "19": {
         },
-        20: {
+        "20": {
         },
-        21: {
+        "21": {
         },
-        22: {
+        "22": {
         },
-        23: {
+        "23": {
         },
-        24: {
+        "24": {
         },
-        25: {
+        "25": {
         },
-        26: {
+        "26": {
         },
-        27: {
+        "27": {
         },
-        28: {
+        "28": {
         },
-        29: {
+        "29": {
         },
-        30: {
+        "30": {
         }
     }
 }
