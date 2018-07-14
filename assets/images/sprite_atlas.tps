@@ -181,6 +181,21 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">sprite_atlas/black_key.png</key>
+            <key type="filename">sprite_atlas/gold_key.png</key>
+            <key type="filename">sprite_atlas/white_key.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,4,16,8</rect>
+                <key>scale9Paddings</key>
+                <rect>8,4,16,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">sprite_atlas/player.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -198,6 +213,9 @@
         <key>fileList</key>
         <array>
             <filename>sprite_atlas/player.png</filename>
+            <filename>sprite_atlas/black_key.png</filename>
+            <filename>sprite_atlas/gold_key.png</filename>
+            <filename>sprite_atlas/white_key.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
