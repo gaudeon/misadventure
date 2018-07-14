@@ -1,5 +1,16 @@
 {
     "player": {
         "frame": "player"
+    },
+    "keys": {
+        "gold": {
+            "frame": "gold_key"
+        },
+        "white": {
+            "frame": "white_key"
+        },
+        "black": {
+            "frame": "black_key"
+        }
     }
 }
