@@ -11,8 +11,8 @@ export default (superclass) => class extends superclass {
         target.objectCarried = this;
 
         // setup my carry position to be relative to the target
-        this.carryRelX = target.x < this.x ? target.x - this.x : this.x - target.x;
-        this.carryRelY = target.y > this.y ? target.y - this.y : this.y - target.y;
+        this.carryRelX = this.x - target.x;
+        this.carryRelY = this.y - target.y;
     }
 
     dropMe () {
