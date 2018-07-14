@@ -197,6 +197,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">sprite_atlas/gate.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,16,16,32</rect>
+                <key>scale9Paddings</key>
+                <rect>8,16,16,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">sprite_atlas/player.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -218,6 +231,7 @@
             <filename>sprite_atlas/gold_key.png</filename>
             <filename>sprite_atlas/white_key.png</filename>
             <filename>sprite_atlas/sword.png</filename>
+            <filename>sprite_atlas/gate.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
