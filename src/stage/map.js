@@ -30,7 +30,7 @@ export default class Map {
             this.tileLayers[layer.name].setCollisionByProperty({ collides: true });
         });
 
-        // resize world to match the the tilemap
+        // resize world to match the tilemap
         this.scene.physics.world.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
         this.scene.cameras.main.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
 
