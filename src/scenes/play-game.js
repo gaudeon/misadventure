@@ -57,10 +57,10 @@ export default class PlayGameScene extends Phaser.Scene {
         var W = this.cameras.main.width;
         var H = this.cameras.main.height;
         var dir = {
-            top:    [0, 0,   W, 1],
-            bottom: [0, H-1, W, 1],
-            left:   [0,   0, 1, H],
-            right:  [W-1, 0, 1, H]
+            north: [0, 0,   W, 1],
+            south: [0, H-1, W, 1],
+            west:  [0,   0, 1, H],
+            east:  [W-1, 0, 1, H]
         };
         for (let d in dir) {
             let [x, y, w, h] = dir[d];
