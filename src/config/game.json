@@ -171,10 +171,34 @@
             "fog": false
         },
         "15": {
+            "description": "gold castle grounds center",
+            "exits": {
+                "north": 13,
+                "east": 16,
+                "south": 15,
+                "west": 14
+            },
+            "fog": false
         },
         "16": {
+            "description": "gold castle grounds right",
+            "exits": {
+                "north": 14,
+                "east": 17,
+                "south": 22,
+                "west": 15
+            },
+            "fog": false
         },
         "17": {
+            "description": "easter egg room",
+            "exits": {
+                "north": 17,
+                "east": 14,
+                "south": 17,
+                "west": 16
+            },
+            "fog": false
         },
         "18": {
         },
