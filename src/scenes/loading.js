@@ -8,7 +8,6 @@
 
 // require in other assets to be included but not added to cache at this time
 // require('../../assets/sounds/sound.wav');
-require('../../assets/json/map.json');
 require('../../assets/images/sprite_atlas.json');
 require('../../assets/images/sprite_atlas.png');
 require('../../assets/images/map_tileset.png');
