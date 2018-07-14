@@ -1,6 +1,6 @@
 {
-    "player": {
-        "frame": "player"
+    "gate": {
+        "frame": "gate"
     },
     "keys": {
         "gold": {
@@ -12,5 +12,11 @@
         "black": {
             "frame": "black_key"
         }
+    },
+    "player": {
+        "frame": "player"
+    },
+    "sword": {
+        "frame": "sword"
     }
 }
