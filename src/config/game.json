@@ -111,16 +111,64 @@
             "fog": false
         },
         "9": {
+            "description": "blue maze middle right",
+            "exits": {
+                "north": 10,
+                "east": 8,
+                "south": 14,
+                "west": 8
+            },
+            "fog": false
         },
         "10": {
+            "description": "blue maze bottom left",
+            "exits": {
+                "north": 11,
+                "east": 11,
+                "south": 9,
+                "west": 7
+            },
+            "fog": false
         },
         "11": {
+            "description": "blue maze bottom center",
+            "exits": {
+                "north": 8,
+                "east": 7,
+                "south": 10,
+                "west": 11
+            },
+            "fog": false
         },
         "12": {
+            "description": "gold castle foyer",
+            "exits": {
+                "north": 12,
+                "east": 12,
+                "south": 13,
+                "west": 12
+            },
+            "fog": false
         },
         "13": {
+            "description": "gold castle entrance",
+            "exits": {
+                "north": 12,
+                "east": 13,
+                "south": 15,
+                "west": 13
+            },
+            "fog": false
         },
         "14": {
+            "description": "gold castle grounds left",
+            "exits": {
+                "north": 9,
+                "east": 15,
+                "south": 16,
+                "west": 17
+            },
+            "fog": false
         },
         "15": {
         },
