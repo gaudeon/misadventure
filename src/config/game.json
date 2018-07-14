@@ -1,8 +1,8 @@
 {
-    "gameWidth": 1280,
-    "gameHeight": 768,
-    "tileWidth": 32,
-    "tileHeight": 32,
+    "gameWidth": 640,
+    "gameHeight": 384,
+    "tileWidth": 16,
+    "tileHeight": 16,
     "map": {
         "key": "map",
         "file": "map.json",
