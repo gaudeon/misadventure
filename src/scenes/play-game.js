@@ -123,5 +123,9 @@ export default class PlayGameScene extends Phaser.Scene {
                 if (!item.isCarried()) item.holdMe(this.player);
             });
         });
+
+        // map collisions with wall layer
+        console.log(this.map.tileLayers.walls);
+        this.physics.add.collider(this.player, this.map.tileLayers.walls);
     }
 };
