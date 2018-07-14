@@ -103,7 +103,7 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     createGates () {
-        this.goldGate = new Gate(this, 320, 260);
+        this.goldGate = new Gate(this, 320, 270);
 
         this.add.existing(this.goldGate);
         this.physics.add.existing(this.goldGate);
