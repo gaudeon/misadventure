@@ -200,12 +200,44 @@
             "fog": false
         },
         "18": {
+            "description": "Red Maze Top Left",
+            "exits": {
+                "north": 18,
+                "east": 19,
+                "south": 20,
+                "west": 19
+            },
+            "fog": false
         },
         "19": {
+            "description": "Red Maze Top Right",
+            "exits": {
+                "north": 19,
+                "east": 18,
+                "south": 21,
+                "west": 18
+            },
+            "fog": false
         },
         "20": {
+            "description": "Red Maze Bottom Left",
+            "exits": {
+                "north": 18,
+                "east": 21,
+                "south": 21,
+                "west": 21
+            },
+            "fog": false
         },
         "21": {
+            "description": "Red Maze Bottom Right",
+            "exits": {
+                "north": 19,
+                "east": 20,
+                "south": 23,
+                "west": 20
+            },
+            "fog": false
         },
         "22": {
         },
