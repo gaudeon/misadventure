@@ -200,7 +200,7 @@
             "fog": false
         },
         "18": {
-            "description": "Red Maze Top Left",
+            "description": "red maze top left",
             "exits": {
                 "north": 18,
                 "east": 19,
@@ -210,7 +210,7 @@
             "fog": false
         },
         "19": {
-            "description": "Red Maze Top Right",
+            "description": "red maze top right",
             "exits": {
                 "north": 19,
                 "east": 18,
@@ -220,7 +220,7 @@
             "fog": false
         },
         "20": {
-            "description": "Red Maze Bottom Left",
+            "description": "red maze bottom left",
             "exits": {
                 "north": 18,
                 "east": 21,
@@ -230,7 +230,7 @@
             "fog": false
         },
         "21": {
-            "description": "Red Maze Bottom Right",
+            "description": "red maze bottom right",
             "exits": {
                 "north": 19,
                 "east": 20,
@@ -240,22 +240,94 @@
             "fog": false
         },
         "22": {
+            "description": "south orange maze top",
+            "exits": {
+                "north": 16,
+                "east": 24,
+                "south": 24,
+                "west": 24
+            },
+            "fog": false
         },
         "23": {
+            "description": "white castle entrance",
+            "exits": {
+                "north": 21,
+                "east": 23,
+                "south": 26,
+                "west": 23
+            },
+            "fog": false
         },
         "24": {
+            "description": "south orange maze center",
+            "exits": {
+                "north": 22,
+                "east": 22,
+                "south": 27,
+                "west": 22
+            },
+            "fog": false
         },
         "25": {
+            "description": "empty purple room",
+            "exits": {
+                "north": 25,
+                "east": 25,
+                "south": 28,
+                "west": 25
+            },
+            "fog": false
         },
         "26": {
+            "description": "white castle grounds top",
+            "exits": {
+                "north": 23,
+                "east": 27,
+                "south": 29,
+                "west": 28
+            },
+            "fog": false
         },
         "27": {
+            "description": "south orange maze bottom",
+            "exits": {
+                "north": 24,
+                "east": 28,
+                "south": 22,
+                "west": 26
+            },
+            "fog": false
         },
         "28": {
+            "description": "empty blue room",
+            "exits": {
+                "north": 25,
+                "east": 26,
+                "south": 30,
+                "west": 27
+            },
+            "fog": false
         },
         "29": {
+            "description": "white castle grounds bottom",
+            "exits": {
+                "north": 26,
+                "east": 29,
+                "south": 29,
+                "west": 29
+            },
+            "fog": false
         },
         "30": {
+            "description": "empty red room",
+            "exits": {
+                "north": 28,
+                "east": 30,
+                "south": 30,
+                "west": 30
+            },
+            "fog": false
         }
     }
 }
