@@ -52,7 +52,6 @@ export default class PlayGameScene extends Phaser.Scene {
 
     setupEdges () {
         // I was attempting to get the worldbounds emitted event to show up somewhere, but that was proving hard to setup
-
         this.edge = {};
 
         var W = this.cameras.main.width;
@@ -63,17 +62,18 @@ export default class PlayGameScene extends Phaser.Scene {
             west:  [0,   0, 1, H],
             east:  [W-1, 0, 1, H]
         };
+
         for (let d in dir) {
             let [x, y, w, h] = dir[d];
-            this.edge[d] = new Phaser.Physics.Arcade.Sprite(this, x, y).setOrigin(0, 0);
-            this.add.existing(this.edge[d]);
+
+            this.edge[d] = this.add.zone(x, y, w, h).setOrigin(0, 0);
+
+            // need to add an arcade physics body to the zone for collision
             this.physics.add.existing(this.edge[d], true);
             this.edge[d].body.width  = w;
             this.edge[d].body.height = h;
             this.edge[d].width = w;
         }
-
-
     }
 
     createPlayer () {
