@@ -1,5 +1,7 @@
 import gameConfig from '../../config/game.json';
 
+import Key from '../../props/key';
+
 export default class CurrentRoomScene extends Phaser.Scene {
     constructor (config, key = 'CurrentRoom') {
         super({ key: key });
@@ -15,15 +17,21 @@ export default class CurrentRoomScene extends Phaser.Scene {
 
         this.setupMap();
 
+        this.setupEdges();
+
         this.setupActors();
 
         this.setupProps();
+
+        // listen from ChangeRoom event on parent scene
+        this.game.events.once('ChangeRoom', (roomId) => {
+            if (gameConfig.rooms[roomId])
+                this.scene.restart({ roomId });
+        });
     }
 
     setupMap () {
         this.tilemap = this.make.tilemap({ key: `room${this.roomId}` });
-
-        console.log(this.tilemap);
 
         this.tilesets = {};
         gameConfig.map.tilesets.forEach(tileset => {
@@ -39,33 +47,47 @@ export default class CurrentRoomScene extends Phaser.Scene {
         });
 
         // resize world to match the tilemap
-        this.game.physics.world.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
+        this.physics.world.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
         this.cameras.main.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
     }
 
     setupActors () {
         this.add.existing(this.game.actors.player); // makes player.preUpdate get called
-        this.onEdge(this.game.actors.player);
-        this.game.physics.add.collider(this.game.actors.player, this.tileLayers.walls); // map collisions with wall layer
+        this.physics.add.existing(this.game.actors.player, false);
+
+        this.game.actors.player.setCollideWorldBounds(true);
+
+        this.onEdge(this.game.actors.player); // room edge detection
+
+        this.physics.add.collider(this.game.actors.player, this.tileLayers.walls); // map collisions with wall layer
+
+        // prop collisions
+        [...Object.values(this.game.props.keys), this.game.props.sword].forEach((prop) => {
+            this.physics.add.collider(this.game.actors.player, prop, () => {
+                if (!prop.isCarried()) prop.holdMe(this.game.actors.player);
+            });
+        });
     }
 
     setupProps () {
         this.add.existing(this.game.props.keys.gold);
+        this.physics.add.existing(this.game.props.keys.gold);
 
         this.add.existing(this.game.props.sword);
+        this.physics.add.existing(this.game.props.sword);
 
         let hasGate = this.game.props.gates[this.roomId];
         if (hasGate) {
             this.add.existing(hasGate);
+            this.physics.add.existing(hasGate);
+
+            // gate collision with player
+            this.physics.add.collider(this.game.actors.player, hasGate, () => {
+                if (this.game.actors.player.heldObject() instanceof Key) {
+                    hasGate.openGate(this.roomId, this.game.actors.player.heldObject());
+                }
+            });
         }
-    }
-
-    onEdge (entity) {
-        if (! this.edge) this.setupEdges();
-        if (! entity.onEdge) { console.log("Object "+entity+" does not have onEdge"); return }
-
-        for (let dir in this.edge)
-            this.game.physics.add.overlap(entity, this.edge[dir], function () { entity.onEdge(dir) }, null);
     }
 
     setupEdges () {
@@ -87,10 +109,17 @@ export default class CurrentRoomScene extends Phaser.Scene {
             this.edge[d] = this.add.zone(x, y, w, h).setOrigin(0, 0);
 
             // need to add an arcade physics body to the zone for collision
-            this.game.physics.add.existing(this.edge[d], true);
+            this.physics.add.existing(this.edge[d], true);
             this.edge[d].body.width  = w;
             this.edge[d].body.height = h;
             this.edge[d].width = w;
         }
+    }
+
+    onEdge (entity) {
+        if (! entity.onEdge) { console.log("Object "+entity+" does not have onEdge"); return }
+
+        for (let dir in this.edge)
+            this.physics.add.overlap(entity, this.edge[dir], function () { entity.onEdge(dir) }, null);
     }
 }
