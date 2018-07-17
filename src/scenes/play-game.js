@@ -22,12 +22,6 @@ export default class PlayGameScene extends Phaser.Scene {
         this.dropItem = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
-    preload () {
-        this.load.atlas(gameConfig.spriteAtlas.key, gameConfig.spriteAtlas.imageFile, gameConfig.spriteAtlas.jsonFile);
-
-        this.map.preload();
-    }
-
     create () {
         this.map.create();
 

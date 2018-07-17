@@ -6,15 +6,6 @@ export default class Map {
         this.room = room;
     }
 
-    preload () {
-        gameConfig.map.tilesets.forEach(tileset => {
-            this.scene.load.image(tileset.key, tileset.file);
-        });
-
-        let roomfile = "../../assets/json/room" + this.room + ".json";
-        this.scene.load.tilemapTiledJSON("room" + this.room, roomfile);
-    }
-
     create () {
         this.tilemap = this.scene.make.tilemap({ key: "room" + this.room });
 
