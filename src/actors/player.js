@@ -2,8 +2,14 @@ import gameConfig from '../config/game.json';
 import spriteConfig from '../config/sprites.json';
 
 import HoldObject from '../mixins/inventory/hold-object';
+import RoomMovement from '../mixins/room-movement';
 
-export default class Player extends HoldObject(Phaser.Physics.Arcade.Sprite) {
+export default class Player extends 
+    RoomMovement(
+        HoldObject(
+            Phaser.Physics.Arcade.Sprite
+        )
+    ) {
     constructor (scene, x, y) {
         super(scene, x, y, gameConfig.spriteAtlas.key, spriteConfig.player.frame);
 
@@ -35,23 +41,5 @@ export default class Player extends HoldObject(Phaser.Physics.Arcade.Sprite) {
         if (dropItem.isDown && this.heldObject()) this.dropObject();
 
         if (super.preUpdate) super.preUpdate(time, delta);
-    }
-
-    onEdge (dir) {
-        if (dir === 'north')
-            this.setY(this.scene.cameras.main.height - this.body.height/2 - 1);
-        else if (dir === 'south')
-            this.setY(1 + this.body.height/2);
-        else if (dir === 'east')
-            this.setX(1 + this.body.width/2);
-        else if (dir === 'west')
-            this.setX(this.scene.cameras.main.width - this.body.width/2 - 1);
-
-        // call exit room after - to allow for the exitRoom to move to some other location
-        this.exitRoom(dir);
-    }
-
-    exitRoom (dir) {
-        console.log("Need to exit room at "+dir);
     }
 }
