@@ -38,16 +38,6 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     update (time, delta) {
-        // testing changeRoom functionality
-        if (time > 10000 && time < 20000)
-            this.changeRoom("1");
-        if (time > 20000)
-            this.changeRoom("13");
-    }
-
-    changeRoom (roomId) {
-        if (gameConfig.rooms[roomId])
-            this.events.emit('ChangeRoom', roomId);
     }
 
     createPlayer () {

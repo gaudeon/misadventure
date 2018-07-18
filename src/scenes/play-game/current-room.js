@@ -22,12 +22,12 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.setupActors();
 
         this.setupProps();
+    }
 
-        // listen from ChangeRoom event on parent scene
-        this.game.events.once('ChangeRoom', (roomId) => {
-            if (gameConfig.rooms[roomId])
-                this.scene.restart({ roomId });
-        });
+    changeRoom (roomId) {
+        if (gameConfig.rooms[roomId])
+            this.scene.pause();
+            this.scene.restart({ roomId });
     }
 
     setupMap () {
@@ -119,7 +119,7 @@ export default class CurrentRoomScene extends Phaser.Scene {
     onEdge (entity) {
         if (! entity.onEdge) { console.log("Object "+entity+" does not have onEdge"); return }
 
-        for (let dir in this.edge)
-            this.physics.add.overlap(entity, this.edge[dir], function () { entity.onEdge(dir) }, null);
+        for (let direction in this.edge)
+            this.physics.add.overlap(entity, this.edge[direction], () => { entity.onEdge(this, direction) }, null);
     }
 }
