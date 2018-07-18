@@ -18,7 +18,7 @@ export default class Player extends
             dropItem: scene.dropItem
         };
 
-        this.myVelocity = gameConfig.playerVelocity; 
+        this.myVelocity = gameConfig.player.velocity;
     }
 
     // will only be invoked if added to gameobject (not just physics object)

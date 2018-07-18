@@ -3,6 +3,20 @@ import gameConfig from '../config/game.json';
 import CurrentRoom from '../scenes/play-game/current-room';
 
 export default (superclass) => class extends superclass {
+    setCurrentRoom (roomId) {
+        if (this.isValidRoom(roomId))
+            this.currentRoomId = roomId;
+    }
+
+    getCurrentRoom () { return this.currentRoomId }
+
+    currentRoomInfo () {
+        if (this.currentRoomId)
+            return gameConfig.rooms[this.currentRoomId];
+
+        return null
+    }
+
     onEdge (currentRoom, direction) {
         if (!(currentRoom instanceof CurrentRoom))
             throw 'current room provided is not an instance of CurrentRoom';
@@ -44,6 +58,8 @@ export default (superclass) => class extends superclass {
         let exit = this.findExit(currentRoom.roomId, direction);
 
         if (exit != null) {
+            this.setCurrentRoom(exit);
+
             currentRoom.changeRoom(exit);
         } else {
             console.log(`${this.constructor.name} needs to exit room ${currentRoom.roomId} at ${direction}`);

@@ -34,14 +34,19 @@ export default class PlayGameScene extends Phaser.Scene {
         this.createGates();
 
         // load current room
-        this.scene.launch('CurrentRoom', { roomId: gameConfig.map.startingRoom });
+        this.scene.launch('CurrentRoom', { roomId: gameConfig.player.startingRoom });
     }
 
     update (time, delta) {
     }
 
     createPlayer () {
-        this.actors.player = new Player(this, 100, 100);
+        const [ x, y ] = [ gameConfig.player.startingX, gameConfig.player.startingY ];
+        this.actors.player = new Player(this, x, y);
+
+        // set player's current room
+        const playerStartingRoom = gameConfig.player.startingRoom;
+        this.actors.player.setCurrentRoom(playerStartingRoom);
     }
 
     createKeys () {

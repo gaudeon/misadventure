@@ -3,7 +3,11 @@
     "gameHeight": 384,
     "tileWidth": 16,
     "tileHeight": 16,
-    "playerVelocity": 200,
+    "player": {
+        "startingX": 100,
+        "startingY": 100,
+        "velocity": 200
+    },
     "map": {
         "startingRoom": 13,
         "tilesets": [
