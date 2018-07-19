@@ -30,6 +30,26 @@ export default (superclass) => class extends superclass {
         return this.carryTarget != null; 
     }
 
+    setCanCarry (ActorClass) {
+        if (!this.canCarryList)
+            this.canCarryList = [];
+
+        this.canCarryList.push(ActorClass);
+    }
+
+    canBeCarried (actor) {
+        // allow all to carry if there is no canCarryList
+        if (!this.canCarryList)
+            return true;
+
+        for (let ActorClass of this.canCarryList) {
+            if (actor instanceof ActorClass)
+                return true;
+        }
+
+        return false;
+    }
+
     // NOTE! anything using this mixins will need to call super.preUpdate so we call this function
     // just this mixin does in case it is embedded in other mixins
     preUpdate (time, delta) {

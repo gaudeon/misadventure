@@ -1,0 +1,48 @@
+{
+    "gates": {
+        "gold": {
+            "frame": "gate",
+            "startingRoom": 13,
+            "startingX": 320,
+            "startingY": 270
+        },
+        "white": {
+            "frame": "gate",
+            "startingRoom": 23,
+            "startingX": 320,
+            "startingY": 270
+        },
+        "black": {
+            "frame": "gate",
+            "startingRoom": 6,
+            "startingX": 320,
+            "startingY": 270
+        }
+    },
+    "keys": {
+        "gold": {
+            "frame": "gold_key",
+            "startingRoom": 13,
+            "startingX": 100,
+            "startingY": 100
+        },
+        "white": {
+            "frame": "white_key",
+            "startingRoom": 15,
+            "startingX": 100,
+            "startingY": 100
+        },
+        "black": {
+            "frame": "black_key",
+            "startingRoom": 15,
+            "startingX": 250,
+            "startingY": 250
+        }
+    },
+    "sword": {
+        "frame": "sword",
+        "startingRoom": 13,
+        "startingX": 150,
+        "startingY": 150
+    }
+}

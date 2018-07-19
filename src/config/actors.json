@@ -1,0 +1,9 @@
+{
+    "player": {
+        "frame": "player",
+        "startingRoom": 13,
+        "startingX": 100,
+        "startingY": 100,
+        "velocity": 200
+    }
+}

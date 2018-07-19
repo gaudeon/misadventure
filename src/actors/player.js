@@ -1,5 +1,5 @@
 import gameConfig from '../config/game.json';
-import spriteConfig from '../config/sprites.json';
+import actorConfig from '../config/actors.json';
 
 import HoldObject from '../mixins/inventory/hold-object';
 import RoomMovement from '../mixins/room/movement';
@@ -13,15 +13,17 @@ export default class Player extends
            )
        )
     ) {
-    constructor (scene, x, y) {
-        super(scene, x, y, gameConfig.spriteAtlas.key, spriteConfig.player.frame);
+    constructor (scene, x = actorConfig.player.startingX, y = actorConfig.player.startingY) {
+        super(scene, x, y, gameConfig.spriteAtlas.key, actorConfig.player.frame);
 
         this.controls = {
             cursor: scene.cursor,
             dropItem: scene.dropItem
         };
 
-        this.myVelocity = gameConfig.player.velocity;
+        this.config = actorConfig.player;
+
+        this.setCurrentRoom(this.config.startingRoom);
     }
 
     // will only be invoked if added to gameobject (not just physics object)
@@ -29,7 +31,7 @@ export default class Player extends
 
         let { cursor, dropItem } = this.controls;
 
-        let v  = this.myVelocity;
+        let v  = this.config.velocity;
 
         let vx = cursor.left.isDown  ? -v
                : cursor.right.isDown ? v

@@ -1,10 +1,12 @@
 import gameConfig from '../config/game.json';
 
-import Gate from '../stage/gate';
 import Player from '../actors/player';
 import GoldKey from '../props/keys/gold-key';
 import WhiteKey from '../props/keys/white-key';
 import BlackKey from '../props/keys/black-key';
+import GoldGate from '../props/gates/gold-gate';
+import WhiteGate from '../props/gates/white-gate';
+import BlackGate from '../props/gates/black-gate';
 import Sword from '../props/sword';
 
 export default class PlayGameScene extends Phaser.Scene {
@@ -34,36 +36,43 @@ export default class PlayGameScene extends Phaser.Scene {
         this.createGates();
 
         // load current room
-        this.scene.launch('CurrentRoom', { roomId: gameConfig.player.startingRoom });
+        this.scene.launch('CurrentRoom', { roomId: this.actors.player.getCurrentRoom() });
     }
 
     update (time, delta) {
     }
 
     createPlayer () {
-        const [ x, y ] = [ gameConfig.player.startingX, gameConfig.player.startingY ];
-        this.actors.player = new Player(this, x, y);
-
-        // set player's current room
-        const playerStartingRoom = gameConfig.player.startingRoom;
-        this.actors.player.setCurrentRoom(playerStartingRoom);
+        this.actors.player = new Player(this);
     }
 
     createKeys () {
-        this.props.keys = {};
-        this.props.keys.gold = new GoldKey(this, 100, 200);
-        this.props.keys.white = new WhiteKey(this, 0, 0);
-        this.props.keys.black = new BlackKey(this, 0, 0);
+        this.props.goldKey = new GoldKey(this);
+        this.props.whiteKey = new WhiteKey(this);
+        this.props.blackKey = new BlackKey(this);
+
+        // add all keys into a collection for easy access to just keys
+        this.keyProps = [
+            this.props.goldKey,
+            this.props.whiteKey,
+            this.props.blackKey
+        ];
     }
 
     createSword () {
-        this.props.sword = new Sword(this, 150, 150);
+        this.props.sword = new Sword(this);
     }
 
     createGates () {
-        this.props.gates = {};
-        this.props.gates[ 6] = new Gate(this, 320, 270);
-        this.props.gates[13] = new Gate(this, 320, 270);
-        this.props.gates[23] = new Gate(this, 320, 270);
+        this.props.goldGate = new GoldGate(this);
+        this.props.whiteGate = new WhiteGate(this);
+        this.props.blackGate = new BlackGate(this);
+
+        // add all gates into a collection for easy access to just gates
+        this.gateProps = [
+            this.props.goldGate,
+            this.props.whiteGate,
+            this.props.blackGate
+        ];
     }
 };

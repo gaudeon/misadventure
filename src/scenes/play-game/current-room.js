@@ -25,9 +25,10 @@ export default class CurrentRoomScene extends Phaser.Scene {
     }
 
     changeRoom (roomId) {
-        if (gameConfig.rooms[roomId])
+        if (gameConfig.rooms[roomId]) {
             this.scene.pause();
             this.scene.restart({ roomId });
+        }
     }
 
     setupMap () {
@@ -62,32 +63,34 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.physics.add.collider(this.game.actors.player, this.tileLayers.walls); // map collisions with wall layer
 
         // prop collisions
-        [...Object.values(this.game.props.keys), this.game.props.sword].forEach((prop) => {
-            this.physics.add.collider(this.game.actors.player, prop, () => {
-                if (!prop.isCarried()) prop.holdMe(this.game.actors.player);
-            });
+        Object.values(this.game.props).forEach((prop) => {
+            if (typeof prop.canBeCarried === 'function' && prop.canBeCarried(this.game.actors.player)) {
+                this.physics.add.collider(this.game.actors.player, prop, () => {
+                    if (!prop.isCarried()) prop.holdMe(this.game.actors.player);
+                });
+            }
         });
     }
 
     setupProps () {
-        this.add.existing(this.game.props.keys.gold);
-        this.physics.add.existing(this.game.props.keys.gold);
+        Object.values(this.game.props).forEach((prop) => {
+            if (prop.getCurrentRoom() === this.roomId) {
+                this.add.existing(prop);
+                this.physics.add.existing(prop);
+            }
+        });
 
-        this.add.existing(this.game.props.sword);
-        this.physics.add.existing(this.game.props.sword);
-
-        let hasGate = this.game.props.gates[this.roomId];
-        if (hasGate) {
-            this.add.existing(hasGate);
-            this.physics.add.existing(hasGate);
-
-            // gate collision with player
-            this.physics.add.collider(this.game.actors.player, hasGate, () => {
-                if (this.game.actors.player.heldObject() instanceof Key) {
-                    hasGate.openGate(this.roomId, this.game.actors.player.heldObject());
-                }
-            });
-        }
+        // setup gate collision if there is a gate in this room
+        this.game.gateProps.forEach((gate) => {
+            if (gate.getCurrentRoom() === this.roomId) {
+                // gate collision with player
+                this.physics.add.collider(this.game.actors.player, gate, () => {
+                    if (this.game.actors.player.heldObject() instanceof Key) {
+                        gate.openGate(this.game.actors.player.heldObject());
+                    }
+                });
+            }
+        });
     }
 
     setupEdges () {
