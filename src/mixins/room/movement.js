@@ -1,22 +1,8 @@
-import gameConfig from '../config/game.json';
+import gameConfig from '../../config/game.json';
 
-import CurrentRoom from '../scenes/play-game/current-room';
+import CurrentRoom from '../../scenes/play-game/current-room';
 
 export default (superclass) => class extends superclass {
-    setCurrentRoom (roomId) {
-        if (this.isValidRoom(roomId))
-            this.currentRoomId = roomId;
-    }
-
-    getCurrentRoom () { return this.currentRoomId }
-
-    currentRoomInfo () {
-        if (this.currentRoomId)
-            return gameConfig.rooms[this.currentRoomId];
-
-        return null
-    }
-
     onEdge (currentRoom, direction) {
         if (!(currentRoom instanceof CurrentRoom))
             throw 'current room provided is not an instance of CurrentRoom';
@@ -37,10 +23,8 @@ export default (superclass) => class extends superclass {
         this.exitRoom(currentRoom, direction);
     }
 
-    isValidRoom (roomId) { return typeof gameConfig.rooms[roomId] === 'object' }
-
     findExit (roomId, direction) {
-        if (!this.isValidRoom(roomId))
+        if (typeof gameConfig.rooms[roomId] !== 'object')
             return null;
 
         if (typeof gameConfig.rooms[roomId].exits !== 'object')
@@ -48,7 +32,7 @@ export default (superclass) => class extends superclass {
 
         let exit = gameConfig.rooms[roomId].exits[direction];
 
-        if (!this.isValidRoom(exit))
+        if (typeof gameConfig.rooms[roomId] !== 'object')
             return null
         
         return exit;
@@ -58,7 +42,8 @@ export default (superclass) => class extends superclass {
         let exit = this.findExit(currentRoom.roomId, direction);
 
         if (exit != null) {
-            this.setCurrentRoom(exit);
+            if (typeof this.setCurrentRoom === 'function')
+                this.setCurrentRoom(exit);
 
             currentRoom.changeRoom(exit);
         } else {
