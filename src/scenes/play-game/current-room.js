@@ -47,6 +47,9 @@ export default class CurrentRoomScene extends Phaser.Scene {
             this.tileLayers[layer.name].setCollisionByProperty({ collides: true });
         });
 
+        // set z-index of walls higher so actors / props are underneath
+        this.tileLayers.walls.setDepth(1);
+
         // resize world to match the tilemap
         this.physics.world.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
         this.cameras.main.setBounds(0, 0, this.tilemap.widthInPixels, this.tilemap.heightInPixels);
