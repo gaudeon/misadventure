@@ -16,7 +16,15 @@
                 "tileset": "map_tileset"
             },
             {
+                "name": "floor_decor",
+                "tileset": "map_tileset"
+            },
+            {
                 "name": "walls",
+                "tileset": "map_tileset"
+            },
+            {
+                "name": "walls_decor",
                 "tileset": "map_tileset"
             }
         ]

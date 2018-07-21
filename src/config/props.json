@@ -24,7 +24,7 @@
             "frame": "gold_key",
             "startingRoom": 13,
             "startingX": 100,
-            "startingY": 100
+            "startingY": 150
         },
         "white": {
             "frame": "white_key",

@@ -42,10 +42,10 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.tileLayers = {};
         gameConfig.map.tileLayers.forEach(layer => {
             this.tileLayers[layer.name] = this.tilemap.createDynamicLayer(layer.name, this.tilesets[layer.tileset], 0, 0);
-
-            // Set colliding tiles
-            this.tileLayers[layer.name].setCollisionByProperty({ collides: true });
         });
+
+        // set collision on walls
+        this.tileLayers.walls.setCollisionByProperty({ collides: true });
 
         // set z-index of walls higher so actors / props are underneath
         this.tileLayers.walls.setDepth(1);
