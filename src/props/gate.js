@@ -11,9 +11,6 @@ export default class Gate extends
     constructor(scene, x, y, frame) {
         super(scene, x, y, gameConfig.spriteAtlas.key, frame);
 
-        scene.physics.add.existing(this);
-        this.setImmovable(true);
-
         this.isOpen = false;
 
         this.requiredKey = Key;

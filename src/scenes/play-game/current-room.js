@@ -22,6 +22,8 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.setupActors();
 
         this.setupProps();
+
+        this.events.once('shutdown', () => (this.cleanup()));
     }
 
     changeRoom (roomId) {
@@ -86,6 +88,10 @@ export default class CurrentRoomScene extends Phaser.Scene {
         // setup gate collision if there is a gate in this room
         this.game.gateProps.forEach((gate) => {
             if (gate.getCurrentRoom() === this.roomId) {
+                // add gate
+                this.physics.add.existing(gate);
+                gate.setImmovable(true);
+
                 // gate collision with player
                 this.physics.add.collider(this.game.actors.player, gate, () => {
                     if (this.game.actors.player.heldObject() instanceof Key) {
@@ -127,5 +133,15 @@ export default class CurrentRoomScene extends Phaser.Scene {
 
         for (let direction in this.edge)
             this.physics.add.overlap(entity, this.edge[direction], () => { entity.onEdge(this, direction) }, null);
+    }
+
+    cleanup () {
+        // undo actors and props physics bodies because they may not be in the next room
+        [...Object.values(this.game.actors), ...Object.values(this.game.props)].forEach((thing) => {
+            if (thing.getCurrentRoom() === this.roomId && thing.body) {
+                thing.body.destroy();
+                thing.body = null;
+            }
+        });
     }
 }
