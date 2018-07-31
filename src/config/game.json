@@ -158,7 +158,17 @@
         "13": {
             "description": "gold castle entrance",
             "exits": {
-                "north": 12,
+                "north": {
+                    "room": 12,
+                    "zone": {
+                        "topLeftTile": {
+                            "x": 18,
+                            "y": 14
+                        },
+                        "tileWidth": 4,
+                        "tileHeight": 1
+                    }
+                },
                 "east": 13,
                 "south": 15,
                 "west": 13

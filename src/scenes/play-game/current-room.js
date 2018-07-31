@@ -118,7 +118,21 @@ export default class CurrentRoomScene extends Phaser.Scene {
         for (let d in dir) {
             let [x, y, w, h] = dir[d];
 
-            this.edge[d] = this.add.zone(x, y, w, h).setOrigin(0, 0);
+            if (typeof gameConfig.rooms[this.roomId].exits[d] === 'object') {
+                const { topLeftTile, tileWidth, tileHeight } = gameConfig.rooms[this.roomId].exits[d].zone;
+
+                x = topLeftTile.x * gameConfig.tileWidth;
+                y = topLeftTile.y * gameConfig.tileHeight;
+
+                w = tileWidth * gameConfig.tileWidth;
+                h = tileHeight * gameConfig.tileHeight;
+
+                this.edge[d] = this.add.zone(x, y, x + w, y + h);
+            } else {
+                this.edge[d] = this.add.zone(x, y, w, h);
+            }
+
+            this.edge[d].setOrigin(0, 0);
 
             // need to add an arcade physics body to the zone for collision
             this.physics.add.existing(this.edge[d], true);
