@@ -88,7 +88,17 @@
         "6": {
             "description": "black castle entrance",
             "exits": {
-                "north": 5,
+                "north": {
+                    "room": 5,
+                    "zone": {
+                        "topLeftTile": {
+                            "x": 19,
+                            "y": 14
+                        },
+                        "tileWidth": 2,
+                        "tileHeight": 1
+                    }
+                },
                 "east": 6,
                 "south": 7,
                 "west": 6
@@ -162,10 +172,10 @@
                     "room": 12,
                     "zone": {
                         "topLeftTile": {
-                            "x": 18,
+                            "x": 19,
                             "y": 14
                         },
-                        "tileWidth": 4,
+                        "tileWidth": 2,
                         "tileHeight": 1
                     }
                 },
@@ -268,7 +278,17 @@
         "23": {
             "description": "white castle entrance",
             "exits": {
-                "north": 21,
+                "north": {
+                    "room": 21,
+                    "zone": {
+                        "topLeftTile": {
+                            "x": 19,
+                            "y": 14
+                        },
+                        "tileWidth": 2,
+                        "tileHeight": 1
+                    }
+                },
                 "east": 23,
                 "south": 26,
                 "west": 23
