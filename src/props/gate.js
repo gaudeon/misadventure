@@ -13,16 +13,24 @@ export default class Gate extends
 
         this.isOpen = false;
 
+        this.closedY = this.y;
+        this.openY = this.y - this.height;
+
         this.requiredKey = Key;
     }
 
-    openGate(key) {
-        if (key instanceof this.requiredKey) {
-            console.log('opened');
+    toggleGate(key) {
+        if (key instanceof this.requiredKey && (this.y === this.closedY || this.y === this.openY)) {
+            this.isOpen = ! this.isOpen;
         }
     }
 
     preUpdate () {
-
+        if (this.isOpen && this.y !== this.openY) {
+            this.setY(this.y - 1);
+        }
+        else if (! this.isOpen && this.y !== this.closedY) {
+            this.setY(this.y + 1);
+        }
     }
 }

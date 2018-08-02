@@ -92,10 +92,16 @@ export default class CurrentRoomScene extends Phaser.Scene {
                 this.physics.add.existing(gate);
                 gate.setImmovable(true);
 
-                // gate collision with player
-                this.physics.add.collider(this.game.actors.player, gate, () => {
-                    if (this.game.actors.player.heldObject() instanceof Key) {
-                        gate.openGate(this.game.actors.player.heldObject());
+                this.physics.add.collider(this.game.actors.player, gate, () => {});
+
+                this.game.keyProps.forEach(key => {
+                    if (key instanceof gate.requiredKey) {
+                        // gate collision with appropriate key
+                        this.physics.add.collider(key, gate, () => {
+                            if (this.game.actors.player.heldObject() === key) {
+                                gate.toggleGate(this.game.actors.player.heldObject());
+                            }
+                        });
                     }
                 });
             }
