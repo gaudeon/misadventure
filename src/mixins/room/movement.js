@@ -81,6 +81,13 @@ export default (superclass) => class extends superclass {
 
             this.calculateEntryPoint (direction, exit);
 
+            if (typeof this.emit === 'function')
+                this.emit('changingRoom', {
+                    direction: direction,
+                    sourceRoom: currentRoom.roomId,
+                    destinationRoom: exit
+                });
+
             currentRoom.changeRoom(exit);
         } else {
             console.log(`${this.constructor.name} needs to exit room ${currentRoom.roomId} at ${direction}`);

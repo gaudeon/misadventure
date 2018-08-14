@@ -11,10 +11,17 @@ export default (superclass) => class extends superclass {
 
     getCurrentRoom () { return this.currentRoomId }
 
+    getRoomInfo (roomId) {
+        if (typeof gameConfig.rooms[roomId] === 'object')
+            return gameConfig.rooms[roomId];
+
+        return null;
+    }
+
     currentRoomInfo () {
         if (this.currentRoomId)
             return gameConfig.rooms[this.currentRoomId];
 
-        return null
+        return null;
     }
 }

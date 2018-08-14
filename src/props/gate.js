@@ -19,6 +19,14 @@ export default class Gate extends
         this.requiredKey = Key;
     }
 
+    open() { // force gate open
+        this.isOpen = true;
+    }
+
+    close() { // force gate closed
+        this.isOpen = false;
+    }
+
     toggleGate(key) {
         if (key instanceof this.requiredKey && (this.y === this.closedY || this.y === this.openY)) {
             this.isOpen = ! this.isOpen;
