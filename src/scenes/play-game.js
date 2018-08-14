@@ -1,5 +1,7 @@
 import gameConfig from '../config/game.json';
 
+import AdminConsole from '../mixins/admin-console';
+
 import Player from '../actors/player';
 import GoldKey from '../props/keys/gold-key';
 import WhiteKey from '../props/keys/white-key';
@@ -9,7 +11,7 @@ import WhiteGate from '../props/gates/white-gate';
 import BlackGate from '../props/gates/black-gate';
 import Sword from '../props/sword';
 
-export default class PlayGameScene extends Phaser.Scene {
+export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
     constructor (config, key = 'PlayGame') {
         super({ key: key });
 
@@ -19,6 +21,8 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     init () {
+        this.setupAdminConsole(); // if admin console is enabled via app, set it up
+
         this.cursor = this.input.keyboard.createCursorKeys();
 
         this.dropItem = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

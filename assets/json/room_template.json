@@ -156,6 +156,14 @@
                 {
                  "collides":true
                 },
+             "1152":
+                {
+                 "collides":true
+                },
+             "1153":
+                {
+                 "collides":true
+                },
              "1158":
                 {
                  "collides":true
@@ -588,6 +596,14 @@
                 {
                  "collides":true
                 },
+             "1664":
+                {
+                 "collides":true
+                },
+             "1665":
+                {
+                 "collides":true
+                },
              "256":
                 {
                  "collides":true
@@ -801,6 +817,14 @@
                  "collides":true
                 },
              "6":
+                {
+                 "collides":true
+                },
+             "640":
+                {
+                 "collides":true
+                },
+             "641":
                 {
                  "collides":true
                 },
@@ -1163,6 +1187,14 @@
                 {
                  "collides":"bool"
                 },
+             "1152":
+                {
+                 "collides":"bool"
+                },
+             "1153":
+                {
+                 "collides":"bool"
+                },
              "1158":
                 {
                  "collides":"bool"
@@ -1595,6 +1627,14 @@
                 {
                  "collides":"bool"
                 },
+             "1664":
+                {
+                 "collides":"bool"
+                },
+             "1665":
+                {
+                 "collides":"bool"
+                },
              "256":
                 {
                  "collides":"bool"
@@ -1808,6 +1848,14 @@
                  "collides":"bool"
                 },
              "6":
+                {
+                 "collides":"bool"
+                },
+             "640":
+                {
+                 "collides":"bool"
+                },
+             "641":
                 {
                  "collides":"bool"
                 },

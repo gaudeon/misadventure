@@ -23,7 +23,12 @@ var gameSettings = {
             debug: false // enable to see physics bodies outlined
         }
     },
-    scene: [LoadingScene, MainMenuScene, PlayGameScene, CurrentRoomScene]
+    scene: [LoadingScene, MainMenuScene, PlayGameScene, CurrentRoomScene],
+    callbacks: {
+        postBoot: (game) => {
+            game.registry.set('allowAdminConsole', true); // enable game admin commands via devtools console
+        }
+    }
 }
 
 let game = new Phaser.Game(gameSettings);
