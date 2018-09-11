@@ -151,7 +151,7 @@
                 "north": 8,
                 "east": 7,
                 "south": 10,
-                "west": 11
+                "west": 10
             },
             "fog": false
         },
