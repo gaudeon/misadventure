@@ -8,6 +8,8 @@ export default class GoldKey extends Key {
 
         this.config = propConfig.keys.gold;
 
+        this.setDepth(propConfig.keys.gold.startingDepth);
+
         this.setCurrentRoom(this.config.startingRoom);
     }
 }

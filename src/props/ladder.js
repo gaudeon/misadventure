@@ -6,18 +6,18 @@ import Player from '../actors/player';
 import CarryMe from '../mixins/inventory/carry-me';
 import RoomLocation from '../mixins/room/location';
 
-export default class Sword extends
+export default class Ladder extends
     RoomLocation(
         CarryMe(
             Phaser.Physics.Arcade.Image
         )
     ) {
-    constructor (scene, x = propConfig.sword.startingX, y = propConfig.sword.startingY) {
-        super(scene, x, y, gameConfig.spriteAtlas.key, propConfig.sword.frame);
+    constructor (scene, x = propConfig.ladder.startingX, y = propConfig.ladder.startingY) {
+        super(scene, x, y, gameConfig.spriteAtlas.key, propConfig.ladder.frame);
 
-        this.config = propConfig.sword;
+        this.config = propConfig.ladder;
 
-        this.setDepth(propConfig.sword.startingDepth);
+        this.setDepth(propConfig.ladder.startingDepth);
 
         this.setCanCarry(Player);
 

@@ -10,6 +10,8 @@ export default class WhiteGate extends Gate {
 
         this.config = propConfig.gates.white;
 
+        this.setDepth(propConfig.gates.white.startingDepth);
+
         this.requiredKey = WhiteKey;
 
         this.setCurrentRoom(this.config.startingRoom);

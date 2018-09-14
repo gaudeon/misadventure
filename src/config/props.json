@@ -4,45 +4,59 @@
             "frame": "gate",
             "startingRoom": 13,
             "startingX": 320,
-            "startingY": 270
+            "startingY": 270,
+            "startingDepth": 0
         },
         "white": {
             "frame": "gate",
             "startingRoom": 23,
             "startingX": 320,
-            "startingY": 270
+            "startingY": 270,
+            "startingDepth": 0
         },
         "black": {
             "frame": "gate",
             "startingRoom": 6,
             "startingX": 320,
-            "startingY": 270
+            "startingY": 270,
+            "startingDepth": 0
         }
     },
     "keys": {
         "gold": {
             "frame": "gold_key",
-            "startingRoom": 13,
-            "startingX": 100,
-            "startingY": 150
+            "startingRoom": 24,
+            "startingX": 128,
+            "startingY": 176,
+            "startingDepth": 0
         },
         "white": {
             "frame": "white_key",
-            "startingRoom": 15,
-            "startingX": 100,
-            "startingY": 100
+            "startingRoom": 11,
+            "startingX": 144,
+            "startingY": 176,
+            "startingDepth": 0
         },
         "black": {
             "frame": "black_key",
-            "startingRoom": 15,
-            "startingX": 250,
-            "startingY": 250
+            "startingRoom": 20,
+            "startingX": 144,
+            "startingY": 192,
+            "startingDepth": 0
         }
+    },
+    "ladder": {
+        "frame": "ladder",
+        "startingRoom": 27,
+        "startingX": 320,
+        "startingY": 208,
+        "startingDepth": 2
     },
     "sword": {
         "frame": "sword",
         "startingRoom": 13,
-        "startingX": 150,
-        "startingY": 150
+        "startingX": 144,
+        "startingY": 320,
+        "startingDepth": 0
     }
 }

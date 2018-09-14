@@ -10,6 +10,8 @@ export default class GoldGate extends Gate {
 
         this.config = propConfig.gates.gold;
 
+        this.setDepth(propConfig.gates.gold.startingDepth);
+
         this.requiredKey = GoldKey;
 
         this.setCurrentRoom(this.config.startingRoom);

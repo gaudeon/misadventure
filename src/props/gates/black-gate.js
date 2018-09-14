@@ -10,6 +10,8 @@ export default class BlackGate extends Gate {
 
         this.config = propConfig.gates.black;
 
+        this.setDepth(propConfig.gates.black.startingDepth);
+
         this.requiredKey = BlackKey;
 
         this.setCurrentRoom(this.config.startingRoom);

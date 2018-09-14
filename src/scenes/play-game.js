@@ -10,6 +10,7 @@ import GoldGate from '../props/gates/gold-gate';
 import WhiteGate from '../props/gates/white-gate';
 import BlackGate from '../props/gates/black-gate';
 import Sword from '../props/sword';
+import Ladder from '../props/ladder';
 
 export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
     constructor (config, key = 'PlayGame') {
@@ -37,6 +38,8 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
         this.createSword();
 
+        this.createLadder();
+
         this.createGates();
 
         // load current room
@@ -61,6 +64,10 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
             this.props.whiteKey,
             this.props.blackKey
         ];
+    }
+
+    createLadder () {
+        this.props.ladder = new Ladder(this);
     }
 
     createSword () {

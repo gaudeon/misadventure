@@ -8,6 +8,8 @@ export default class BlackKey extends Key {
 
         this.config = propConfig.keys.black;
 
+        this.setDepth(propConfig.keys.black.startingDepth);
+
         this.setCurrentRoom(this.config.startingRoom);
     }
 }

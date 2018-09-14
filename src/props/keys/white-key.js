@@ -8,6 +8,8 @@ export default class WhiteKey extends Key {
 
         this.config = propConfig.keys.white;
 
+        this.setDepth(propConfig.keys.white.startingDepth);
+
         this.setCurrentRoom(this.config.startingRoom);
     }
 }
