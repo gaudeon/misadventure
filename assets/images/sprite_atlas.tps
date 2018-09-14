@@ -223,6 +223,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">sprite_atlas/magnet.png</key>
             <key type="filename">sprite_atlas/player.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -246,6 +247,7 @@
             <filename>sprite_atlas/sword.png</filename>
             <filename>sprite_atlas/gate.png</filename>
             <filename>sprite_atlas/ladder.png</filename>
+            <filename>sprite_atlas/magnet.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

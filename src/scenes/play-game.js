@@ -11,6 +11,7 @@ import WhiteGate from '../props/gates/white-gate';
 import BlackGate from '../props/gates/black-gate';
 import Sword from '../props/sword';
 import Ladder from '../props/ladder';
+import Magnet from '../props/magnet';
 
 export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
     constructor (config, key = 'PlayGame') {
@@ -40,6 +41,8 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
         this.createLadder();
 
+        this.createMagnet();
+
         this.createGates();
 
         // load current room
@@ -68,6 +71,10 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
     createLadder () {
         this.props.ladder = new Ladder(this);
+    }
+
+    createMagnet () {
+        this.props.magnet = new Magnet(this);
     }
 
     createSword () {

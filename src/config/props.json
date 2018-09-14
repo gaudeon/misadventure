@@ -52,6 +52,13 @@
         "startingY": 208,
         "startingDepth": 2
     },
+    "magnet": {
+        "frame": "magnet",
+        "startingRoom": 29,
+        "startingX": 512,
+        "startingY": 288,
+        "startingDepth": 0
+    },
     "sword": {
         "frame": "sword",
         "startingRoom": 13,
