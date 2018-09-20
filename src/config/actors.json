@@ -5,5 +5,26 @@
         "startingX": 100,
         "startingY": 100,
         "velocity": 200
+    },
+    "grundle": {
+        "frame": "green_dragon_active",
+        "startingRoom": 29,
+        "startingX": 512,
+        "startingY": 224,
+        "velocity": 200
+    },
+    "rhindle": {
+        "frame": "red_dragon_active",
+        "startingRoom": 2,
+        "startingX": 256,
+        "startingY": 320,
+        "velocity": 200
+    },
+    "yorgle": {
+        "frame": "yellow_dragon_active",
+        "startingRoom": 11,
+        "startingX": 336,
+        "startingY": 192,
+        "velocity": 200
     }
 }

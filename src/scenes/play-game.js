@@ -3,6 +3,9 @@ import gameConfig from '../config/game.json';
 import AdminConsole from '../mixins/admin-console';
 
 import Player from '../actors/player';
+import Grundle from '../actors/dragons/grundle';
+import Rhindle from '../actors/dragons/rhindle';
+import Yorgle from '../actors/dragons/yorgle';
 import GoldKey from '../props/keys/gold-key';
 import WhiteKey from '../props/keys/white-key';
 import BlackKey from '../props/keys/black-key';
@@ -12,6 +15,7 @@ import BlackGate from '../props/gates/black-gate';
 import Sword from '../props/sword';
 import Ladder from '../props/ladder';
 import Magnet from '../props/magnet';
+import Chalice from '../props/chalice';
 
 export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
     constructor (config, key = 'PlayGame') {
@@ -35,6 +39,8 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
         this.createPlayer();
 
+        this.createDragons();
+
         this.createKeys();
 
         this.createSword();
@@ -42,6 +48,8 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
         this.createLadder();
 
         this.createMagnet();
+
+        this.createChalice();
 
         this.createGates();
 
@@ -54,6 +62,19 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
     createPlayer () {
         this.actors.player = new Player(this);
+    }
+
+    createDragons () {
+        this.actors.grundle = new Grundle(this);
+        this.actors.rhindle = new Rhindle(this);
+        this.actors.yorgle = new Yorgle(this);
+
+        // add all dragons into a collection for easy access to just dragons
+        this.dragons = [
+            this.actors.grundle,
+            this.actors.rhindle,
+            this.actors.yorgle
+        ];
     }
 
     createKeys () {
@@ -75,6 +96,10 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
     createMagnet () {
         this.props.magnet = new Magnet(this);
+    }
+
+    createChalice () {
+        this.props.chalice = new Chalice(this);
     }
 
     createSword () {

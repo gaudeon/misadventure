@@ -1,4 +1,11 @@
 {
+    "chalice": {
+        "frame": "chalice",
+        "startingRoom": 2,
+        "startingX": 208,
+        "startingY": 304,
+        "startingDepth": 0
+    },
     "gates": {
         "gold": {
             "frame": "gate",

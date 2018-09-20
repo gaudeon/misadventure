@@ -197,7 +197,29 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">sprite_atlas/chalice.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,12,16,24</rect>
+                <key>scale9Paddings</key>
+                <rect>8,12,16,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">sprite_atlas/gate.png</key>
+            <key type="filename">sprite_atlas/green_dragon_active.png</key>
+            <key type="filename">sprite_atlas/green_dragon_attack.png</key>
+            <key type="filename">sprite_atlas/green_dragon_dead.png</key>
+            <key type="filename">sprite_atlas/red_dragon_active.png</key>
+            <key type="filename">sprite_atlas/red_dragon_attack.png</key>
+            <key type="filename">sprite_atlas/red_dragon_dead.png</key>
+            <key type="filename">sprite_atlas/yellow_dragon_active.png</key>
+            <key type="filename">sprite_atlas/yellow_dragon_attack.png</key>
+            <key type="filename">sprite_atlas/yellow_dragon_dead.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -248,6 +270,16 @@
             <filename>sprite_atlas/gate.png</filename>
             <filename>sprite_atlas/ladder.png</filename>
             <filename>sprite_atlas/magnet.png</filename>
+            <filename>sprite_atlas/chalice.png</filename>
+            <filename>sprite_atlas/green_dragon_active.png</filename>
+            <filename>sprite_atlas/green_dragon_attack.png</filename>
+            <filename>sprite_atlas/green_dragon_dead.png</filename>
+            <filename>sprite_atlas/red_dragon_active.png</filename>
+            <filename>sprite_atlas/red_dragon_attack.png</filename>
+            <filename>sprite_atlas/red_dragon_dead.png</filename>
+            <filename>sprite_atlas/yellow_dragon_active.png</filename>
+            <filename>sprite_atlas/yellow_dragon_attack.png</filename>
+            <filename>sprite_atlas/yellow_dragon_dead.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

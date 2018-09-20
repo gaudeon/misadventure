@@ -75,6 +75,19 @@ export default class CurrentRoomScene extends Phaser.Scene {
                 });
             }
         });
+
+        // dragons
+        Object.values(this.game.dragons).forEach((dragon) => {
+            if (dragon.getCurrentRoom() === this.roomId) {
+                this.add.existing(dragon);
+                this.physics.add.existing(dragon);
+            }
+
+            // TODO: figure out collision / edge detection for dragons
+
+            // TODO: setup collision with the player
+            // this.physics.add.collider(this.game.actors.player, dragon); 
+        });
     }
 
     setupProps () {
