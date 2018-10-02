@@ -43,7 +43,7 @@
                 "south": 3,
                 "west": 4
             },
-            "fog": false
+            "fog": true
         },
         "2": {
             "description": "north orange maze top right",
@@ -53,7 +53,7 @@
                 "south": 4,
                 "west": 1
             },
-            "fog": false
+            "fog": true
         },
         "3": {
             "description": "north orange maze bottom left",
@@ -63,7 +63,7 @@
                 "south": 1,
                 "west": 2
             },
-            "fog": false
+            "fog": true
         },
         "4": {
             "description": "north orange maze bottom right",
@@ -73,7 +73,7 @@
                 "south": 5,
                 "west": 3
             },
-            "fog": false
+            "fog": true
         },
         "5": {
             "description": "black castle foyer",
@@ -273,7 +273,7 @@
                 "south": 24,
                 "west": 24
             },
-            "fog": false
+            "fog": true
         },
         "23": {
             "description": "white castle entrance",
@@ -303,7 +303,7 @@
                 "south": 27,
                 "west": 22
             },
-            "fog": false
+            "fog": true
         },
         "25": {
             "description": "empty purple room",
@@ -333,7 +333,7 @@
                 "south": 22,
                 "west": 26
             },
-            "fog": false
+            "fog": true
         },
         "28": {
             "description": "empty blue room",

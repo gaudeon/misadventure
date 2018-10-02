@@ -10,6 +10,8 @@ export default class CurrentRoomScene extends Phaser.Scene {
     init (data) {
         // set roomId to startingRoom unless defined
         this.roomId = data.roomId || gameConfig.map.startingRoom;
+
+        this.roomConfig = gameConfig.rooms[this.roomId];
     }
 
     create () {
@@ -22,6 +24,12 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.setupActors();
 
         this.setupProps();
+
+        this.setupCameras();
+
+        this.clearRoomFog(); // reset to main camera
+
+        if (this.roomConfig.fog) this.startRoomFog();
 
         this.events.once('shutdown', () => (this.cleanup()));
     }
@@ -127,13 +135,46 @@ export default class CurrentRoomScene extends Phaser.Scene {
         });
     }
 
+    setupCameras () {
+        this.cameras.normal = this.cameras.main;
+
+        this.cameras.fogBG = this.cameras.add();
+
+        let color = new Phaser.Display.Color(231, 163, 88, 255);
+
+        this.cameras.fogBG.setBackgroundColor(color);
+        this.cameras.fogBG.transparent = false;
+
+        this.cameras.fogBG.ignore(this.children.list);
+
+        this.cameras.fogFG = this.cameras.add();
+        this.cameras.fogFG.setSize(this.cameras.main.width * .3, this.cameras.main.height * .3);
+        this.cameras.fogFG.setRoundPixels(true);
+    }
+
+    startRoomFog () {
+        this.cameras.normal.setVisible(false);
+        this.cameras.fogBG.setVisible(true);
+        this.cameras.fogFG.setVisible(true);
+        this.cameras.main = this.cameras.fogBG;
+        this.hasRoomFog = true;
+    }
+
+    clearRoomFog () {
+        this.cameras.normal.setVisible(true);
+        this.cameras.fogBG.setVisible(false);
+        this.cameras.fogFG.setVisible(false);
+        this.cameras.main = this.cameras.normal;
+        this.hasRoomFog = false;
+    }
+
     setupEdges () {
         // I was attempting to get the worldbounds emitted event to show up somewhere, but that was proving hard to setup
         this.edge = {};
 
-        var W = this.cameras.main.width;
-        var H = this.cameras.main.height;
-        var dir = {
+        let W = this.cameras.main.width;
+        let H = this.cameras.main.height;
+        let dir = {
             north: [0, 0,   W, 1],
             south: [0, H-1, W, 1],
             west:  [0,   0, 1, H],
@@ -172,6 +213,20 @@ export default class CurrentRoomScene extends Phaser.Scene {
 
         for (let direction in this.edge)
             this.physics.add.overlap(entity, this.edge[direction], () => { entity.onEdge(this, direction) }, null);
+    }
+
+    update () {
+        if (this.hasRoomFog) {
+            let playerX = this.game.actors.player.x;
+            let playerY = this.game.actors.player.y;
+            let hazeCameraWidth = this.cameras.main.width * .3;
+            let hazeCameraHeight = this.cameras.main.height * .3;
+            let hazeCameraX = playerX - hazeCameraWidth / 2;
+            let hazeCameraY = playerY - hazeCameraHeight / 2;
+
+            this.cameras.fogFG.setViewport(hazeCameraX, hazeCameraY, hazeCameraWidth, hazeCameraHeight);
+            this.cameras.fogFG.centerOn(playerX, playerY);
+        }
     }
 
     cleanup () {
