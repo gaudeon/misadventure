@@ -38,7 +38,7 @@ export default (superclass) => class extends superclass {
             if (typeof gameConfig.rooms[exit].exits['south'] === 'object') {
                 const { topLeftTile } = gameConfig.rooms[exit].exits['south'].zone;
 
-                this.setY( topLeftTile.y * gameConfig.tileHeight - gameConfig.tileHeight );
+                this.setY(topLeftTile.y * gameConfig.tileHeight - gameConfig.tileHeight);
             } else {
                 this.setY(this.scene.cameras.main.height - this.body.height/2 - 1);
             }
@@ -47,7 +47,7 @@ export default (superclass) => class extends superclass {
             if (typeof gameConfig.rooms[exit].exits['north'] === 'object') {
                 const { topLeftTile, tileHeight } = gameConfig.rooms[exit].exits['north'].zone;
 
-                this.setY( topLeftTile.y * gameConfig.tileHeight + tileHeight * gameConfig.tileHeight + gameConfig.tileHeight );
+                this.setY(topLeftTile.y * gameConfig.tileHeight + tileHeight * gameConfig.tileHeight + gameConfig.tileHeight);
             } else {
                 this.setY(1 + this.body.height/2);
             }
@@ -56,7 +56,7 @@ export default (superclass) => class extends superclass {
             if (typeof gameConfig.rooms[exit].exits['west'] === 'object') {
                 const { topLeftTile, tileWidth } = gameConfig.rooms[exit].exits['west'].zone;
 
-                this.setX( topLeftTile.x * gameConfig.tileWidth + tileWidth * gameConfig.tileWidth + gameConfig.tileWidth );
+                this.setX(topLeftTile.x * gameConfig.tileWidth + tileWidth * gameConfig.tileWidth + gameConfig.tileWidth);
             } else {
                 this.setX(1 + this.body.width/2);
             }
@@ -65,7 +65,7 @@ export default (superclass) => class extends superclass {
             if (typeof gameConfig.rooms[exit].exits['east'] === 'object') {
                 const { topLeftTile } = gameConfig.rooms[exit].exits['east'].zone;
 
-                this.setX( topLeftTile.x * gameConfig.tileWidth - gameConfig.tileWidth );
+                this.setX(topLeftTile.x * gameConfig.tileWidth - gameConfig.tileWidth);
             } else {
                 this.setX(this.scene.cameras.main.width - this.body.width/2 - 1);
             }

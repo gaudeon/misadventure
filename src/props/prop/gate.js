@@ -1,12 +1,13 @@
-import gameConfig from '../config/game.json';
+import gameConfig from '../../config/game.json';
 
-import RoomLocation from '../mixins/room/location';
+import Prop from '../prop';
+import RoomLocation from '../../mixins/room/location';
 
 import Key from './key';
 
 export default class Gate extends 
     RoomLocation(
-        Phaser.Physics.Arcade.Image
+        Prop
     ) {
     constructor(scene, x, y, frame) {
         super(scene, x, y, gameConfig.spriteAtlas.key, frame);

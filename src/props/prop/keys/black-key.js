@@ -1,4 +1,4 @@
-import propConfig from '../../config/props.json';
+import propConfig from '../../../config/props.json';
 
 import Key from '../key';
 

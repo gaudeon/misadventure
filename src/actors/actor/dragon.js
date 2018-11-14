@@ -1,20 +1,23 @@
-import gameConfig from '../config/game.json';
+import gameConfig from '../../config/game.json';
 
-import HoldObject from '../mixins/inventory/hold-object';
-import RoomMovement from '../mixins/room/movement';
-import RoomLocation from '../mixins/room/location';
+import Actor from '../actor';
+import HoldObject from '../../mixins/inventory/hold-object';
+import RoomMovement from '../../mixins/room/movement';
+import RoomLocation from '../../mixins/room/location';
 
 export default class Dragon extends
     RoomLocation(
        RoomMovement(
            HoldObject(
-               Phaser.Physics.Arcade.Sprite
+               Actor
            )
        )
     ) {
 
     constructor (scene, x, y, frame) {
         super(scene, x, y, gameConfig.spriteAtlas.key, frame);
+
+        this.colliders = [];
 
         //this.setCanCarry(Bat);
     }

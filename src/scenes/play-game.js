@@ -1,21 +1,19 @@
-import gameConfig from '../config/game.json';
-
 import AdminConsole from '../mixins/admin-console';
 
-import Player from '../actors/player';
-import Grundle from '../actors/dragons/grundle';
-import Rhindle from '../actors/dragons/rhindle';
-import Yorgle from '../actors/dragons/yorgle';
-import GoldKey from '../props/keys/gold-key';
-import WhiteKey from '../props/keys/white-key';
-import BlackKey from '../props/keys/black-key';
-import GoldGate from '../props/gates/gold-gate';
-import WhiteGate from '../props/gates/white-gate';
-import BlackGate from '../props/gates/black-gate';
-import Sword from '../props/sword';
-import Ladder from '../props/ladder';
-import Magnet from '../props/magnet';
-import Chalice from '../props/chalice';
+import Player from '../actors/actor/player';
+import Grundle from '../actors/actor/dragons/grundle';
+import Rhindle from '../actors/actor/dragons/rhindle';
+import Yorgle from '../actors/actor/dragons/yorgle';
+import GoldKey from '../props/prop/keys/gold-key';
+import WhiteKey from '../props/prop/keys/white-key';
+import BlackKey from '../props/prop/keys/black-key';
+import GoldGate from '../props/prop/gates/gold-gate';
+import WhiteGate from '../props/prop/gates/white-gate';
+import BlackGate from '../props/prop/gates/black-gate';
+import Sword from '../props/prop/sword';
+import Ladder from '../props/prop/ladder';
+import Magnet from '../props/prop/magnet';
+import Chalice from '../props/prop/chalice';
 
 export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
     constructor (config, key = 'PlayGame') {
@@ -55,9 +53,6 @@ export default class PlayGameScene extends AdminConsole(Phaser.Scene) {
 
         // load current room
         this.scene.launch('CurrentRoom', { roomId: this.actors.player.getCurrentRoom() });
-    }
-
-    update (time, delta) {
     }
 
     createPlayer () {

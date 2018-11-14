@@ -1,15 +1,15 @@
-import gameConfig from '../config/game.json';
-import propConfig from '../config/props.json';
+import gameConfig from '../../config/game.json';
+import propConfig from '../../config/props.json';
 
-import Player from '../actors/player';
-
-import CarryMe from '../mixins/inventory/carry-me';
-import RoomLocation from '../mixins/room/location';
+import Player from '../../actors/actor/player';
+import Prop from '../prop';
+import CarryMe from '../../mixins/inventory/carry-me';
+import RoomLocation from '../../mixins/room/location';
 
 export default class Chalice extends
     RoomLocation(
         CarryMe(
-            Phaser.Physics.Arcade.Image
+            Prop
         )
     ) {
     constructor (scene, x = propConfig.chalice.startingX, y = propConfig.chalice.startingY) {

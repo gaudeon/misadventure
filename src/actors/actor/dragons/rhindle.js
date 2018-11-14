@@ -1,4 +1,4 @@
-import actorConfig from '../../config/actors.json';
+import actorConfig from '../../../config/actors.json';
 
 import Dragon from '../dragon';
 

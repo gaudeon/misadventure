@@ -1,14 +1,14 @@
-import gameConfig from '../config/game.json';
+import gameConfig from '../../config/game.json';
 
-import Player from '../actors/player';
-
-import CarryMe from '../mixins/inventory/carry-me';
-import RoomLocation from '../mixins/room/location';
+import Player from '../../actors/actor/player';
+import Prop from '../prop';
+import CarryMe from '../../mixins/inventory/carry-me';
+import RoomLocation from '../../mixins/room/location';
 
 export default class Key extends
     RoomLocation(
         CarryMe(
-            Phaser.Physics.Arcade.Image
+            Prop
         )
     ) {
     constructor (scene, x, y, frame) {

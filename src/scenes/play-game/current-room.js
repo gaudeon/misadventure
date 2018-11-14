@@ -1,7 +1,5 @@
 import gameConfig from '../../config/game.json';
 
-import Key from '../../props/key';
-
 export default class CurrentRoomScene extends Phaser.Scene {
     constructor (config, key = 'CurrentRoom') {
         super({ key: key });
@@ -27,16 +25,13 @@ export default class CurrentRoomScene extends Phaser.Scene {
 
         this.setupCameras();
 
-        this.clearRoomFog(); // reset to main camera
-
         if (this.roomConfig.fog) this.startRoomFog();
-
-        this.events.once('shutdown', () => (this.cleanup()));
     }
 
     changeRoom (roomId) {
         if (gameConfig.rooms[roomId]) {
             this.scene.pause();
+            this.cleanup();
             this.scene.restart({ roomId });
         }
     }
@@ -73,14 +68,16 @@ export default class CurrentRoomScene extends Phaser.Scene {
 
         this.onEdge(this.game.actors.player); // room edge detection
 
-        this.physics.add.collider(this.game.actors.player, this.tileLayers.walls); // map collisions with wall layer
+        this.game.actors.player.colliders.push(this.physics.add.collider(this.game.actors.player, this.tileLayers.walls)); // map collisions with wall layer
 
         // prop collisions
         Object.values(this.game.props).forEach((prop) => {
             if (typeof prop.canBeCarried === 'function' && prop.canBeCarried(this.game.actors.player)) {
-                this.physics.add.collider(this.game.actors.player, prop, () => {
-                    if (!prop.isCarried()) prop.holdMe(this.game.actors.player);
-                });
+                if (prop.getCurrentRoom() === this.roomId) {
+                    this.game.actors.player.colliders.push(this.physics.add.collider(this.game.actors.player, prop, () => {
+                        if (!prop.isCarried()) prop.holdMe(this.game.actors.player);
+                    }));
+                }
             }
         });
 
@@ -94,7 +91,7 @@ export default class CurrentRoomScene extends Phaser.Scene {
             // TODO: figure out collision / edge detection for dragons
 
             // TODO: setup collision with the player
-            // this.physics.add.collider(this.game.actors.player, dragon); 
+            // this.game.actors.player.colliders.push(this.physics.add.collider(this.game.actors.player, dragon)); 
         });
     }
 
@@ -113,7 +110,7 @@ export default class CurrentRoomScene extends Phaser.Scene {
                 this.physics.add.existing(gate);
                 gate.setImmovable(true);
 
-                this.physics.add.collider(this.game.actors.player, gate, () => {});
+                this.game.actors.player.colliders.push(this.physics.add.collider(this.game.actors.player, gate, () => {}));
 
                 // make sure gate stays open on room changes
                 this.game.actors.player.once('changingRoom', (data) => {
@@ -124,11 +121,11 @@ export default class CurrentRoomScene extends Phaser.Scene {
                 this.game.keyProps.forEach(key => {
                     if (key instanceof gate.requiredKey) {
                         // gate collision with appropriate key
-                        this.physics.add.collider(key, gate, () => {
+                        key.colliders.push(this.physics.add.collider(key, gate, () => {
                             if (this.game.actors.player.heldObject() === key) {
                                 gate.toggleGate(this.game.actors.player.heldObject());
                             }
-                        });
+                        }));
                     }
                 });
             }
@@ -137,6 +134,8 @@ export default class CurrentRoomScene extends Phaser.Scene {
 
     setupCameras () {
         this.cameras.normal = this.cameras.main;
+
+        if (! this.roomConfig.fog) return;
 
         this.cameras.fogBG = this.cameras.add();
 
@@ -150,22 +149,24 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.cameras.fogFG = this.cameras.add();
         this.cameras.fogFG.setSize(this.cameras.main.width * .3, this.cameras.main.height * .3);
         this.cameras.fogFG.setRoundPixels(true);
+
+        this.startRoomFog();
     }
 
+    // setup cameras for displaying fog
     startRoomFog () {
         this.cameras.normal.setVisible(false);
         this.cameras.fogBG.setVisible(true);
         this.cameras.fogFG.setVisible(true);
         this.cameras.main = this.cameras.fogBG;
-        this.hasRoomFog = true;
     }
 
+    // useful to clear room fog cameras
     clearRoomFog () {
         this.cameras.normal.setVisible(true);
         this.cameras.fogBG.setVisible(false);
         this.cameras.fogFG.setVisible(false);
         this.cameras.main = this.cameras.normal;
-        this.hasRoomFog = false;
     }
 
     setupEdges () {
@@ -216,26 +217,36 @@ export default class CurrentRoomScene extends Phaser.Scene {
     }
 
     update () {
-        if (this.hasRoomFog) {
-            let playerX = this.game.actors.player.x;
-            let playerY = this.game.actors.player.y;
-            let hazeCameraWidth = this.cameras.main.width * .3;
-            let hazeCameraHeight = this.cameras.main.height * .3;
-            let hazeCameraX = playerX - hazeCameraWidth / 2;
-            let hazeCameraY = playerY - hazeCameraHeight / 2;
+        this.updateRoomFog();
+    }
 
-            this.cameras.fogFG.setViewport(hazeCameraX, hazeCameraY, hazeCameraWidth, hazeCameraHeight);
-            this.cameras.fogFG.centerOn(playerX, playerY);
-        }
+    updateRoomFog () {
+        if (!this.roomConfig.fog) return;
+
+        let playerX = this.game.actors.player.x;
+        let playerY = this.game.actors.player.y;
+        let hazeCameraWidth = this.cameras.main.width * .3;
+        let hazeCameraHeight = this.cameras.main.height * .3;
+        let hazeCameraX = playerX - hazeCameraWidth / 2;
+        let hazeCameraY = playerY - hazeCameraHeight / 2;
+
+        this.cameras.fogFG.setViewport(hazeCameraX, hazeCameraY, hazeCameraWidth, hazeCameraHeight);
+        this.cameras.fogFG.centerOn(playerX, playerY);
     }
 
     cleanup () {
+        this.sys.updateList.removeAll(); // clear the update list ahead of shutdown so we don't destroy our actors and props
+
         // undo actors and props physics bodies because they may not be in the next room
         [...Object.values(this.game.actors), ...Object.values(this.game.props)].forEach((thing) => {
             if (thing.getCurrentRoom() === this.roomId && thing.body) {
-                thing.body.destroy();
-                thing.body = null;
+                thing.disableBody(true, true);
             }
+            thing.colliders.forEach(collider => collider.destroy());
+
+            thing.colliders = [];
         });
+
+        if (this.roomConfig.fog) this.clearRoomFog();
     }
 }

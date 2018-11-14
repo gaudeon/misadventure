@@ -1,15 +1,16 @@
-import gameConfig from '../config/game.json';
-import actorConfig from '../config/actors.json';
+import gameConfig from '../../config/game.json';
+import actorConfig from '../../config/actors.json';
 
-import HoldObject from '../mixins/inventory/hold-object';
-import RoomMovement from '../mixins/room/movement';
-import RoomLocation from '../mixins/room/location';
+import Actor from '../actor';
+import HoldObject from '../../mixins/inventory/hold-object';
+import RoomMovement from '../../mixins/room/movement';
+import RoomLocation from '../../mixins/room/location';
 
 export default class Player extends
     RoomLocation(
        RoomMovement(
            HoldObject(
-               Phaser.Physics.Arcade.Sprite
+               Actor
            )
        )
     ) {
@@ -22,6 +23,8 @@ export default class Player extends
         };
 
         this.config = actorConfig.player;
+
+        this.colliders = [];
 
         this.setCurrentRoom(this.config.startingRoom);
     }
