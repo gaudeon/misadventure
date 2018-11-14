@@ -1,5 +1,6 @@
 import gameConfig from '../../config/game.json';
-
+//TODO: redesign how current-room works so that gameobjects aren't in the parent scene but in this scene
+// even though they get destroyed find a way to persist things (probably means separating out actor/prop login and properties from their associated sprite/image objects)
 export default class CurrentRoomScene extends Phaser.Scene {
     constructor (config, key = 'CurrentRoom') {
         super({ key: key });
