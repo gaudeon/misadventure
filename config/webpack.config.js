@@ -1,14 +1,18 @@
-const webpack = require('webpack');
 const path  = require('path');
 const srcApp = path.resolve(__dirname, '..', 'src', 'app.js');
 const distDir = path.resolve(__dirname, '..', 'dist');
-const assetPath = process.env.ASSET_PATH || '/';
 
 module.exports = (options) => {
-    const config = Object.assign({
+    // allow for things like webpack-plugin-serve/client (dev only) to be adding into the app entry
+    let appEntry = [srcApp];
+    if (options.appendAppEntry) {
+        appEntry.push(options.appendAppEntry);
+        delete options.appendAppEntry;
+    }
 
+    const config = Object.assign({
         entry: {
-            app: srcApp
+            app: appEntry,
         },
 
         output: {
@@ -52,10 +56,6 @@ module.exports = (options) => {
                 }
             ]
         },
-
-        plugins: [
-            new webpack.DefinePlugin({ 'CANVAS_RENDERER': JSON.stringify(true), 'WEBGL_RENDERER': JSON.stringify(true) })
-        ],
 
     }, options);
 
