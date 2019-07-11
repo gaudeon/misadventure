@@ -35,6 +35,9 @@ export default class CurrentRoomScene extends Phaser.Scene {
             this.cleanup();
             this.scene.restart({ roomId });
         }
+        else {
+            throw Error(`Room ${roomId} do not exist!`);
+        }
     }
 
     setupMap () {
@@ -65,6 +68,10 @@ export default class CurrentRoomScene extends Phaser.Scene {
         this.add.existing(this.game.actors.player); // makes player.preUpdate get called
         this.physics.add.existing(this.game.actors.player, false);
 
+        // reset every time we start a room so player sprite doesn't break
+        this.game.actors.player.scene = this.game;
+        this.game.actors.player.setActive(true);
+        this.game.actors.player.setVisible(true);
         this.game.actors.player.setCollideWorldBounds(true);
 
         this.onEdge(this.game.actors.player); // room edge detection
@@ -87,6 +94,11 @@ export default class CurrentRoomScene extends Phaser.Scene {
             if (dragon.getCurrentRoom() === this.roomId) {
                 this.add.existing(dragon);
                 this.physics.add.existing(dragon);
+
+                 // reset every time we start a room so dragon sprites don't break
+                dragon.scene = this.game;
+                dragon.setActive(true);
+                dragon.setVisible(true);
             }
 
             // TODO: figure out collision / edge detection for dragons
@@ -101,6 +113,11 @@ export default class CurrentRoomScene extends Phaser.Scene {
             if (prop.getCurrentRoom() === this.roomId) {
                 this.add.existing(prop);
                 this.physics.add.existing(prop);
+
+                // reset every time so props don't break
+                prop.scene = this.game;
+                prop.setActive(true);
+                prop.setVisible(true);
             }
         });
 
