@@ -22,6 +22,12 @@ node_modules: package.json $(NPM)
 clean:
 	rm -rf node_modules
 
+butler_push:
+	butler push dist/dist-latest.zip dashbangsplat/misadventure:latest
+
+butler_status:
+	butler status dashbangsplat/misadventure:latest
+
 $(NPM):
 	@echo "Need to install npm!"
 	@[ ! -e /etc/centos-release ] || make INSTALL_CENTOS
@@ -43,4 +49,4 @@ INSTALL_OSX:
 	@echo Installing npm ...
 	@which npm || brew install node
 
-.PHONY: all start stop dist audiosprite clean
+.PHONY: all start stop dist audiosprite clean butler_push butler_status
